@@ -2,7 +2,14 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 
 resources:
-  - ../deployments
-  - ../services
-  - ../prequeries
-  - ../ingress
+  - ../deployments/db_deploy.yaml
+  - ../deployments/frontend_deploy.yaml
+  - ../deployments/backend_deploy.yaml
+  - ../services/servicebackend.yaml
+  - ../services/servicedb.yaml
+  - ../services/servicefrontend.yaml
+  - ../prequeries/persistent_volume.yaml
+  - ../prequeries/persistent_volume_claim.yaml
+  - ../prequeries/db-secrets.yaml
+  - ../prequeries/db-config.yaml
+  - ../ingress/ingress.yaml
