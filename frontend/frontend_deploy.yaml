@@ -2,7 +2,6 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: frontend
-  namespace: webapp
 spec:
   selector:
     matchLabels:
@@ -17,7 +16,7 @@ spec:
     spec:
       containers:
       - name: frontend
-        image: nivav123/frontend:v1.0
+        image: nivav123/frontend:latest
         imagePullPolicy: IfNotPresent
         ports:
         - containerPort: 3000
