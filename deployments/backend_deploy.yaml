@@ -14,6 +14,17 @@ spec:
         app: website
         tier: backend
     spec:
+      initContainers:
+        - name: wait-for-db
+          image: busybox
+          command:
+            - sh
+            - -c
+            - >
+              until nc -z db-service 5432; do
+                echo "Waiting for database...";
+                sleep 5;
+              done;
       containers:
       - name: backend
         image: nivav123/backend:v1.0

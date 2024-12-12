@@ -1,0 +1,12 @@
+resources:
+  - ../deployments/db_deploy.yaml
+  - ../deployments/frontend_deploy.yaml
+  - ../deployments/backend_deploy.yaml
+  - ../services/servicebackend.yaml
+  - ../services/servicedb.yaml
+  - ../services/servicefrontend.yaml
+  - ../prequeries/persistant_volume
+  - ../prequeries/persistant_volume_claim
+  - ../prequeries/db-secrets.yaml
+  - ../prequeries/db-config.yaml
+  - ../ingress/ingress.yaml
