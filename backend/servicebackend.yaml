@@ -2,6 +2,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: backend-service
+  argocd.argoproj.io/hook: PreSync
   labels:
     app: website
     tier: backend
