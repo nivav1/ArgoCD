@@ -5,8 +5,8 @@ resources:
   - ../services/servicebackend.yaml
   - ../services/servicedb.yaml
   - ../services/servicefrontend.yaml
-  - ../prequeries/persistant_volume
-  - ../prequeries/persistant_volume_claim
+  - ../prequeries/persistant_volume.yaml
+  - ../prequeries/persistant_volume_claim.yaml
   - ../prequeries/db-secrets.yaml
   - ../prequeries/db-config.yaml
   - ../ingress/ingress.yaml

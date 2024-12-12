@@ -9,7 +9,7 @@ spec:
   source:
     repoURL: https://github.com/nivav1/ArgoCD.git
     targetRevision: HEAD
-    path: kustomization
+    path: prequeries
 
   destination:
     server: https://kubernetes.default.svc
