@@ -28,7 +28,7 @@ spec:
               done;
       containers:
       - name: backend
-        image: nivav123/backend:v1.3
+        image: nivav123/backend:v2.0
         imagePullPolicy: IfNotPresent
         ports:
         - containerPort: 5000

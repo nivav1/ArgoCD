@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: frontend
-        image: nivav123/frontend:v1.3
+        image: nivav123/frontend:v2.0
         imagePullPolicy: IfNotPresent
         ports:
         - containerPort: 3000
