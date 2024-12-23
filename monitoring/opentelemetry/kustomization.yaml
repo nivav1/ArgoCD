@@ -3,5 +3,4 @@ kind: Kustomization
 namespace: monitoring
 resources:
   - application_opentelemetry.yaml
-  - collector_values.yaml
   - collector_service.yaml
