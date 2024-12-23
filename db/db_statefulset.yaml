@@ -1,13 +1,14 @@
 apiVersion: apps/v1
-kind: Deployment
+kind: StatefulSet
 metadata:
   name: db
 spec:
+  serviceName: db-headless
+  replicas: 1
   selector:
     matchLabels:
       app: website
       tier: db
-  replicas: 1
   template:
     metadata:
       labels:
@@ -39,19 +40,17 @@ spec:
         volumeMounts:
         - name: db-storage
           mountPath: /var/lib/postgresql/data
-      volumes:
-      - name: db-storage
-        persistentVolumeClaim:
-          claimName: db-pvc
-          readinessProbe:
-            tcpSocket:
-              port: 5432
-            initialDelaySeconds: 10
-            periodSeconds: 5
-            successThreshold: 1
-            failureThreshold: 3
-          livenessProbe:
-            tcpSocket:
-              port: 5432
-            initialDelaySeconds: 15
-            periodSeconds: 20
+      readinessProbe:
+        tcpSocket:
+          port: 5432
+        initialDelaySeconds: 10
+        periodSeconds: 5
+        successThreshold: 1
+        failureThreshold: 3
+      livenessProbe:
+        tcpSocket:
+          port: 5432
+        initialDelaySeconds: 15
+        periodSeconds: 20
+  volumeClaimRef:
+    name: db-pvc

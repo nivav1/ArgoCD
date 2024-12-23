@@ -7,3 +7,4 @@ resources:
   - ../frontend
   - ../backend
   - ../ingress
+  - ../monitoring

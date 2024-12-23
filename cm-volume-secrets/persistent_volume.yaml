@@ -5,7 +5,7 @@ metadata:
   argocd.argoproj.io/hook: PreSync
 spec:
   capacity:
-    storage: 2Gi
+    storage: 3Gi
   accessModes:
     - ReadWriteOnce
   persistentVolumeReclaimPolicy: Retain

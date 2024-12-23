@@ -1,0 +1,58 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: argocd-server
+  namespace: argocd
+  labels:
+    app.kubernetes.io/name: argocd-server
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: argocd-server
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: argocd-server
+    spec:
+      containers:
+      - name: argocd-server
+        image: argoproj/argocd:v2.6.16
+        ports:
+        - containerPort: 8080
+        - containerPort: 8083
+        env:
+        - name: ARGOCD_SERVER_PORT
+          value: "8080"
+        - name: ARGOCD_METRICS_PORT
+          value: "8083"
+        livenessProbe:
+          httpGet:
+            path: /healthz
+            port: 8080
+        readinessProbe:
+          httpGet:
+            path: /healthz
+            port: 8080
+        volumeMounts:
+        - name: argocd-repo-server-tls
+          mountPath: /app/config/server/tls
+          readOnly: true
+      volumes:
+      - name: argocd-repo-server-tls
+        secret:
+          secretName: argocd-repo-server-tls
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: argocd-server-metrics
+  namespace: argocd
+spec:
+  ports:
+  - name: http
+    port: 8083
+    targetPort: 8083
+  selector:
+    app.kubernetes.io/name: argocd-server
+  type: ClusterIP
