@@ -38,7 +38,7 @@ spec:
               name: db-secrets
               key: DB_PASSWORD
         volumeMounts:
-        - name: db-storage
+        - name: db-pvc
           mountPath: /var/lib/postgresql/data
       readinessProbe:
         tcpSocket:
