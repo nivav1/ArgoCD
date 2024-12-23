@@ -40,6 +40,10 @@ spec:
         volumeMounts:
         - name: db-pvc
           mountPath: /var/lib/postgresql/data
+      volumes:
+      - name: db-pvc
+        persistentVolumeClaim:
+          claimName: db-pvc
       readinessProbe:
         tcpSocket:
           port: 5432
@@ -52,5 +56,3 @@ spec:
           port: 5432
         initialDelaySeconds: 15
         periodSeconds: 20
-  volumeClaimRef:
-    name: db-pvc

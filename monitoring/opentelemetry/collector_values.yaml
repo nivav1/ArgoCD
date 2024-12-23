@@ -14,6 +14,9 @@ exporters:
   jaeger:
     endpoint: "http://localhost:14250"
 
+processors:
+  batch:
+
 service:
   pipelines:
     metrics:
@@ -21,10 +24,12 @@ service:
       exporters: [prometheus]
     traces:
       receivers: [otlp]
-      exporters: [logging, jaeger]
+      processors: [batch]
+      exporters: [debug, jaeger]
     logs:
       receivers: [otlp]
-      exporters: [logging]
+      processors: [batch]
+      exporters: [debug]
 image:
   repository: "otel/opentelemetry-collector-k8s"
 mode: "daemonset"
