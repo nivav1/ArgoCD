@@ -1,21 +1,8 @@
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: grafana-datasources
-  namespace: webapp
-data:
-  prometheus-datasource.yaml: |
-    apiVersion: 1
-    datasources:
-    - name: Prometheus
-      type: prometheus
-      access: proxy
-      url: http://prometheus:9090
----
 apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: grafana
+  namespace: monitoring
   labels:
     app: grafana
 spec:
@@ -50,6 +37,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: grafana
+  namespace: monitoring
   labels:
     app: grafana
 spec:
