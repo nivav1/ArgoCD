@@ -6,7 +6,7 @@ metadata:
     app: jaeger
 spec:
   ports:
-    - port: 12500
+    - port: 14500
       nodePort: 30211
       name: webui
   selector:

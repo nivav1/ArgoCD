@@ -3,7 +3,6 @@ kind: ConfigMap
 metadata:
   name: grafana-datasources
   namespace: monitoring
-  argocd.argoproj.io/hook: PreSync
 data:
   prometheus-datasource.yaml: |
     apiVersion: 1

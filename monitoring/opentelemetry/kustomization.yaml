@@ -4,3 +4,6 @@ namespace: monitoring
 resources:
   - application_opentelemetry.yaml
   - collector_service.yaml
+  - daemonset.yaml
+  - configmap-agent.yaml
+  - serviceaccount.yaml

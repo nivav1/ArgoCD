@@ -5,13 +5,13 @@ metadata:
   namespace: argocd
 spec:
   project: default
-  source:
-    repoURL: https://open-telemetry.github.io/opentelemetry-helm-charts
+  sources:
+  - repoURL: https://open-telemetry.github.io/opentelemetry-helm-charts
     targetRevision: 0.111.0
     chart: opentelemetry-collector
     helm:
       valueFiles:
-        - $ArgoCD/monitoring/opentelemetry/collector_values.yaml
+        - $ArgoCD/monitoring/opentelemetry/values.yaml
   - repoURL: https://github.com/nivav1/ArgoCD.git
     targetRevision: main
     ref: ArgoCD
