@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: webapp
+  name: monitoring
   namespace: argocd
 spec:
   project: default
@@ -9,11 +9,11 @@ spec:
   source:
     repoURL: https://github.com/nivav1/ArgoCD.git
     targetRevision: HEAD
-    path: kustomization_webapp
+    path: kustomization_monitoring
 
   destination:
     server: https://kubernetes.default.svc
-    namespace: webapp
+    namespace: monitoring
 
   syncPolicy:
     automated:
