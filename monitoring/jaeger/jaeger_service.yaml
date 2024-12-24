@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: jaeger
+  labels:
+    app: jaeger
+spec:
+  ports:
+    - port: 12500
+      nodePort: 30211
+      name: webui
+  selector:
+    app: jaeger
+  type: NodePort

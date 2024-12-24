@@ -3,7 +3,6 @@ kind: PersistentVolumeClaim
 metadata:
   name: prometheus-data
 spec:
-  volumeName: db-pv
   accessModes:
     - ReadWriteOnce
   resources:

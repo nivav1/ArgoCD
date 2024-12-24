@@ -10,9 +10,6 @@ spec:
     targetRevision: 3.3.3
     chart: jaeger
     helm:
-      service:
-        type: NodePort
-        nodePort: 30211
   destination:
     server: https://kubernetes.default.svc
     namespace: monitoring

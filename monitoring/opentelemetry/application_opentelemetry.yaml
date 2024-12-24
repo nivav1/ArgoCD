@@ -11,7 +11,10 @@ spec:
     chart: opentelemetry-collector
     helm:
       valueFiles:
-        - collector_values.yaml
+        - $ArgoCD/monitoring/opentelemetry/collector_values.yaml
+  - repoURL: https://github.com/nivav1/ArgoCD.git
+    targetRevision: main
+    ref: ArgoCD
   destination:
     server: https://kubernetes.default.svc
     namespace: monitoring

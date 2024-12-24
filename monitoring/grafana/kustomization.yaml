@@ -4,3 +4,4 @@ namespace: monitoring
 resources:
   - application.yaml
   - grafana_deployment.yaml
+  - grafana-datasources.yaml
