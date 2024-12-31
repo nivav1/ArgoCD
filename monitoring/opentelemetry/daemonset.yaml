@@ -9,7 +9,10 @@ spec:
   selector:
     matchLabels:
       app: otel-collector
-
+    template:
+      metadata:
+        labels:
+          app: otel-collector
     spec:
       serviceAccountName: example-opentelemetry-collector
       securityContext:
