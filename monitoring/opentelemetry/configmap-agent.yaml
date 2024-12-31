@@ -1,18 +1,18 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: example-opentelemetry-collector-agent
+  name: configmap-agent
   namespace: monitoring
   labels:
-    helm.sh/chart: opentelemetry-collector-0.111.0
-    app.kubernetes.io/name: opentelemetry-collector
-    app.kubernetes.io/instance: collector
-    app.kubernetes.io/version: "0.115.1"
-    app.kubernetes.io/managed-by: Helm
-    app.kubernetes.io/component: agent-collector
+    app: otel-collector
 data:
   relay: |
     exporters:
+      jaeger:
+        endpoint: ${env:MY_POD_IP}:14250
+        insecure: true
+      prometheus:
+        endpoint: ${env:MY_POD_IP}:9464
       debug: {}
     extensions:
       health_check:
@@ -28,10 +28,6 @@ data:
         protocols:
           grpc:
             endpoint: ${env:MY_POD_IP}:14250
-          thrift_compact:
-            endpoint: ${env:MY_POD_IP}:6831
-          thrift_http:
-            endpoint: ${env:MY_POD_IP}:14268
       otlp:
         protocols:
           grpc:
@@ -63,6 +59,7 @@ data:
         metrics:
           exporters:
           - debug
+          - prometheus
           processors:
           - memory_limiter
           - batch
@@ -72,6 +69,8 @@ data:
         traces:
           exporters:
           - debug
+          - jaeger
+          - zipkin
           processors:
           - memory_limiter
           - batch

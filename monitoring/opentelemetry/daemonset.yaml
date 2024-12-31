@@ -4,18 +4,11 @@ metadata:
   name: example-opentelemetry-collector-agent
   namespace: monitoring
   labels:
-    helm.sh/chart: opentelemetry-collector-0.111.0
-    app.kubernetes.io/name: opentelemetry-collector
-    app.kubernetes.io/instance: collector
-    app.kubernetes.io/version: "0.115.1"
-    app.kubernetes.io/managed-by: Helm
-    app.kubernetes.io/component: agent-collector
+    app: otel-collector
 spec:
   selector:
     matchLabels:
-      app.kubernetes.io/name: opentelemetry-collector
-      app.kubernetes.io/instance: collector
-      component: agent-collector
+      app: otel-collector
 
     spec:
       serviceAccountName: example-opentelemetry-collector
@@ -32,18 +25,10 @@ spec:
           image: "otel/opentelemetry-collector-k8s:0.115.1"
           imagePullPolicy: IfNotPresent
           ports:
-            - name: jaeger-compact
-              containerPort: 6831
-              protocol: UDP
-              hostPort: 6831
             - name: jaeger-grpc
               containerPort: 14250
               protocol: TCP
               hostPort: 14250
-            - name: jaeger-thrift
-              containerPort: 14268
-              protocol: TCP
-              hostPort: 14268
             - name: otlp
               containerPort: 4317
               protocol: TCP
@@ -56,6 +41,10 @@ spec:
               containerPort: 9411
               protocol: TCP
               hostPort: 9411
+            - name: prometheus
+              containerPort: 9464
+              protocol: TCP
+              hostPort: 9464
           env:
             - name: MY_POD_IP
               valueFrom:
@@ -76,7 +65,7 @@ spec:
       volumes:
         - name: opentelemetry-collector-configmap
           configMap:
-            name: example-opentelemetry-collector-agent
+            name: configmap-agent
             items:
               - key: relay
                 path: relay.yaml

@@ -3,6 +3,5 @@ kind: ConfigMap
 metadata:
   name: db-config
   namespace: webapp
-  argocd.argoproj.io/hook: PreSync
 data:
   DB_NAME: "mydb"
